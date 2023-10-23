@@ -1,21 +1,76 @@
-# Wordpress - ignore core, configuration, examples, uploads and logs.
-# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+# Created by https://www.toptal.com/developers/gitignore/api/vim,macos,wordpress
+# Edit at https://www.toptal.com/developers/gitignore?templates=vim,macos,wordpress
 
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### macOS Patch ###
+# iCloud generated files
+*.icloud
+
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+### WordPress ###
 # Core
 #
 # Note: if you want to stage/commit WP core files
 # you can delete this whole section/until Configuration.
-/wp-admin/
-/wp-content/index.php
-/wp-content/languages
-/wp-content/plugins/index.php
-/wp-content/themes/index.php
-/wp-includes/
-/index.php
-/license.txt
-/readme.html
-/wp-*.php
-/xmlrpc.php
+#/wp-admin/
+#/wp-content/index.php
+#/wp-content/languages
+#/wp-content/plugins/index.php
+#/wp-content/themes/index.php
+#/wp-includes/
+#/index.php
+#/license.txt
+#/readme.html
+#/wp-*.php
+#/xmlrpc.php
 
 # Configuration
 wp-config.php
@@ -36,13 +91,14 @@ wp-config.php
 /.htaccess
 
 # All plugins
-#
 # Note: If you wish to whitelist plugins,
 # uncomment the next line
 #/wp-content/plugins
 
 # All themes
-#
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+
+
+# End of https://www.toptal.com/developers/gitignore/api/vim,macos,wordpress
