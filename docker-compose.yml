@@ -1,26 +1,69 @@
 version: '3'
+
 services:
-#  nginx:
-#    build:
-#      context: ./requirements/nginx
-#      dockerfile: Dockerfile
-#    container_name: nginx
-#    image: nginx
-#    ports:
-#        - "8080:80"
-#        - "4443:443"
-#    tty: true
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    container_name: mariadb
+    volumes:
+      - db-data:/var/liv/mysql
+    networks:
+      - wordpress-network
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+    restart: always
 
   wordpress:
     build:
-      context: ./requirements/wordpress
+      context: requirements/wordpress
       dockerfile: Dockerfile
     container_name: wordpress
-    image: wordpress
-    ports:
-        - "8080:80"
-        - "4443:443"
-        - "9000:9000"
-	volume:
-		- "./wordpress:/var/www/html/wordpress"
+#   image: wordpress
+    networks:
+      - nginx-network
+      - wordpress-network
+#    volumes:
+#      - wordpress_data:/var/www/html/wordpress
+    depends_on:
+      - mariadb
+    restart: always
     tty: true
+
+  nginx:
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+#    image: nginx
+    ports:
+      - "8080:80"
+      - "4443:443"
+    networks:
+      - nginx-network
+    depends_on:
+      - wordpress
+    restart: always
+    #tty: true
+
+networks:
+  nginx-network:
+  wordpress-network:
+
+volumes:
+  db-data:
+
+#volumes:
+#  wordpress_data:
+#   name: wordpress
+#   driver_opts:
+#     type: local
+#     device: ${WORDPRESS_DATA_PATH}
+#  mariadb_data:
+#    name: mariadb
+#    driver_opts:
+#      type: local
+#      device: ${DB_DATA_PATH}
