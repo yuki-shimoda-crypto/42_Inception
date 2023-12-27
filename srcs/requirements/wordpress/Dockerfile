@@ -3,22 +3,14 @@ FROM debian:bookworm
 RUN apt update
 
 # remove
-RUN apt install -y vim
-
-## nginx
-#RUN apt update && apt install -y nginx
-#COPY nginx.conf /etc/nginx/nginx.conf
-#COPY default /etc/nginx/sites-available/default
+RUN apt install -y vim iputils-ping telnet
 
 # mariadb
 #RUN apt install -y mariadb-server
 #RUN mariadb -u root -p
 
-# wordpress
-#RUN apt install php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip -y
-
 # Install necessary packages
-RUN   apt install -y  \
+RUN apt install -y  \
     php-json    \
     php-mysql    \
     php-curl    \

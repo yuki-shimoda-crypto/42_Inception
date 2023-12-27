@@ -1,22 +1,25 @@
 version: '3'
 
-#  mariadb:
-#    build:
-#      context: ./requirements/mariadb
-#      dockerfile: Dockerfile
-#    container_name: mariadb
+services:
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    container_name: mariadb
 #    volumes:
 #      - db-data:/var/lib/mysql
-#    networks:
-#      - wordpress-network
+    networks:
+      - wordpress-network
+    volumes:
+      - ./requirements/mariadb/my.cnf:/etc/mysql/my.cnf
 #    environment:
 #      DB_NAME: ${DB_NAME}
 #      DB_USER: ${DB_USER}
 #      DB_PASSWORD: ${DB_PASSWORD}
 #      DB_HOST: ${DB_HOST}
-#    restart: always
+    restart: always
+#    tty: true
 
-services:
   wordpress:
     build:
       context: requirements/wordpress
@@ -25,15 +28,14 @@ services:
 #   image: wordpress
     networks:
       - nginx-network
-#      - wordpress-network
+      - wordpress-network
     volumes:
       - wordpress_files:/var/www/html
       - ./requirements/wordpress/www.conf:/etc/php/8.2/fpm/pool.d/www.conf
-#      - wordpress_data:/var/www/html/wordpress
 #    depends_on:
 #      - mariadb
     restart: always
-    tty: true
+#    tty: true
 
   nginx:
     build:
@@ -53,11 +55,11 @@ services:
       - ./requirements/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./requirements/nginx/default:/etc/nginx/sites-available/default
     restart: always
-    tty: true
+#    tty: true
 
 networks:
   nginx-network:
-#   wordpress-network:
+  wordpress-network:
 # 
 volumes:
     wordpress_files:
