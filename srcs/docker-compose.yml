@@ -5,6 +5,10 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+      args:
+        - DB_NAME=${DB_NAME}
+        - DB_USER=${DB_USER}
+        - DB_PASSWORD=${DB_PASSWORD}
     container_name: mariadb
 #    volumes:
 #      - db-data:/var/lib/mysql
@@ -16,7 +20,6 @@ services:
 #      DB_NAME: ${DB_NAME}
 #      DB_USER: ${DB_USER}
 #      DB_PASSWORD: ${DB_PASSWORD}
-#      DB_HOST: ${DB_HOST}
     restart: always
 #    tty: true
 
@@ -24,6 +27,11 @@ services:
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
+      args:
+        - DB_NAME=${DB_NAME}
+        - DB_USER=${DB_USER}
+        - DB_PASSWORD=${DB_PASSWORD}
+        - DB_HOST=${DB_HOST}
     container_name: wordpress
 #   image: wordpress
     networks:
@@ -32,6 +40,11 @@ services:
     volumes:
       - wordpress_files:/var/www/html
       - ./requirements/wordpress/www.conf:/etc/php/8.2/fpm/pool.d/www.conf
+#    environment:
+#      - DB_NAME=${DB_NAME}
+#      - DB_USER=${DB_USER}
+#      - DB_PASSWORD=${DB_PASSWORD}
+
 #    depends_on:
 #      - mariadb
     restart: always

@@ -3,7 +3,7 @@ FROM debian:bookworm
 RUN apt update
 
 # remove
-RUN apt install -y vim iputils-ping telnet
+RUN apt install -y vim iputils-ping telnet net-tools
 
 # mariadb
 #RUN apt install -y mariadb-server
@@ -31,6 +31,17 @@ RUN wget https://wordpress.org/latest.tar.gz \
   && cp wordpress/wp-config-sample.php wordpress/wp-config.php \
   && mv wordpress/*  . \
   && rm -rf latest.tar.gz wordpress
+
+ARG DB_NAME
+ARG DB_USER
+ARG DB_PASSWORD
+ARG DB_HOST
+
+RUN sed -i "s/database_name_here/$DB_NAME/g" /var/www/html/wp-config.php \
+  && sed -i "s/username_here/$DB_USER/g" /var/www/html/wp-config.php \
+  && sed -i "s/password_here/$DB_PASSWORD/g" /var/www/html/wp-config.php \
+  && sed -i "s/localhost/$DB_HOST/g" /var/www/html/wp-config.php
+
 
 #RUN mkdir -p /var/www/html && cp -a wordpress/ /var/www/html/
 #RUN rm -rf latest.tar.gz wordpress

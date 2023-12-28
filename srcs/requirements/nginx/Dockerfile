@@ -3,7 +3,7 @@ FROM debian:bookworm
 RUN apt update
 
 # remove
-RUN apt install -y vim iputils-ping telnet
+RUN apt install -y vim iputils-ping telnet net-tools
 
 RUN apt update && apt install -y nginx
 
