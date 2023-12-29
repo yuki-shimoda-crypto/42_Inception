@@ -59,7 +59,7 @@ services:
     networks:
       - nginx-network
     ports:
-      - "80:80"
+#      - "80:80"
       - "443:443"
     volumes:
       - wordpress_files:/var/www/html
