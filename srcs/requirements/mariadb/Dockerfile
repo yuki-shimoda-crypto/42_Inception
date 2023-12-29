@@ -19,6 +19,8 @@ RUN service mariadb start && /usr/local/bin/init-db.sh
 # 
 # RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+COPY my.cnf /etc/mysql/my.cnf
+
 EXPOSE 3306
 
 #ENTRYPOINT ["/usr/local/bin/init-db.sh && mysqld_safe"]

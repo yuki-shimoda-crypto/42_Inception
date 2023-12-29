@@ -15,7 +15,7 @@ services:
       - wordpress-network
     volumes:
       - db-data:/var/lib/mysql
-      - ./requirements/mariadb/my.cnf:/etc/mysql/my.cnf
+#      - ./requirements/mariadb/my.cnf:/etc/mysql/my.cnf
     environment:
       - TZ=${TZ}
     restart: always
