@@ -76,5 +76,16 @@ networks:
   wordpress-network:
  
 volumes:
-   wordpress_files:
-   db-data:
+ wordpress_files:
+   driver: local
+   driver_opts:
+     type: none
+     device: /home/debian/data/wordpress_files
+     o: bind
+ db-data:
+   driver: local
+   driver_opts:
+     type: none
+     device: /home/debian/data/db-data
+     o: bind
+
