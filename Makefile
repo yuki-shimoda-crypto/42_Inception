@@ -1,7 +1,7 @@
 # ビルドと起動
 up:
-	mkdir -p /home/debian/data/wordpress_files
-	mkdir -p /home/debian/data/db-data
+	mkdir -p /home/yshimoda/data/wordpress_files
+	mkdir -p /home/yshimoda/data/db-data
 	docker compose -f srcs/docker-compose.yml up --build -d
 
 # 停止とコンテナの削除
@@ -11,7 +11,7 @@ down:
 # ボリュームを含めて全て削除
 clean:
 	docker compose -f srcs/docker-compose.yml down --volumes
-	sudo rm -rf /home/debian/data
+	sudo rm -rf /home/yshimoda/data
 
 # コンテナのログを表示
 logs:

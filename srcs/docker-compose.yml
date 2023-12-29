@@ -80,12 +80,12 @@ volumes:
    driver: local
    driver_opts:
      type: none
-     device: /home/debian/data/wordpress_files
+     device: /home/yshimoda/data/wordpress_files
      o: bind
  db-data:
    driver: local
    driver_opts:
      type: none
-     device: /home/debian/data/db-data
+     device: /home/yshimoda/data/db-data
      o: bind
 
