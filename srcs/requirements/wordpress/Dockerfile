@@ -67,6 +67,7 @@ RUN chmod +x /start-wordpress.sh
 #RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 EXPOSE 9000
+COPY www.conf /etc/php/8.2/fpm/pool.d/www.conf
 
 CMD ["/start-wordpress.sh"]
 #CMD ["php-fpm8.2", "-F"]

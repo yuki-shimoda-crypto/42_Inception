@@ -37,7 +37,7 @@ services:
       - wordpress-network
     volumes:
       - wordpress_files:/var/www/html
-      - ./requirements/wordpress/www.conf:/etc/php/8.2/fpm/pool.d/www.conf
+#      - ./requirements/wordpress/www.conf:/etc/php/8.2/fpm/pool.d/www.conf
     environment:
       - TZ=${TZ}
       - WP_USER=${WP_USER}
