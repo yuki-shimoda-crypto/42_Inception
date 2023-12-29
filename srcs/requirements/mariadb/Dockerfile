@@ -15,6 +15,10 @@ COPY init-db.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/init-db.sh
 RUN service mariadb start && /usr/local/bin/init-db.sh
 
+# ARG TZ
+# 
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 EXPOSE 3306
 
 #ENTRYPOINT ["/usr/local/bin/init-db.sh && mysqld_safe"]
